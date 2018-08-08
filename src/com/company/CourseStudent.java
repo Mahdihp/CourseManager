@@ -47,13 +47,13 @@ public class CourseStudent {
         if (o == null || getClass() != o.getClass()) return false;
         CourseStudent that = (CourseStudent) o;
         return Objects.equals(course, that.course) &&
-                Objects.equals(grade, that.grade);
+                Objects.equals(student, that.student);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(course, grade);
+        return Objects.hash(course, student);
     }
 
     @Override

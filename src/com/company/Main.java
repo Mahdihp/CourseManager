@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static Set<Course> courseList = new HashSet<>();
+    private static List<Course> courseList = new ArrayList<>();
     private static Set<Student> studentList = new HashSet<>();
     private static Set<CourseStudent> courseStudentList = new HashSet<>();
 
@@ -56,14 +56,15 @@ public class Main {
     private static void avarageStudent() {
         Double sum = 0d;
         int count = 0;
-        for (Student s: studentList){
-            for (CourseStudent cs : courseStudentList){
-                if (s.equals(cs.getStudent())){
+        for (Student s : studentList) {
+            for (CourseStudent cs : courseStudentList) {
+                if (s.equals(cs.getStudent())) {
                     sum += cs.getGrade();
                     count++;
                 }
             }
-            System.out.println(s.getName()+"  " + sum / count);
+            double ave = sum / count;
+            System.out.println(s.getName() + "  " + ave);
             count = 0;
             sum = 0d;
         }
@@ -77,9 +78,11 @@ public class Main {
                 if (c.equals(cs.getCourse())) {
                     sum += cs.getGrade();
                     count++;
+
                 }
             }
-            System.out.println(c.getName()+"  "+ sum / count);
+            double ave = sum / count;
+            System.out.println(c.getName() + "  " + ave);
             count = 0;
             sum = 0d;
         }
@@ -96,6 +99,7 @@ public class Main {
     }
 
     private static void courseList() {
+        Collections.sort(courseList);
         for (Course c : courseList)
             System.out.println(c);
     }
@@ -117,10 +121,8 @@ public class Main {
             Double grade = Double.valueOf(parts[2]);
             CourseStudent courseStudent = new CourseStudent(course, student, grade);
 
-            if (!courseList.contains(course))
-                courseList.add(course);
-            if (!studentList.contains(student))
-                studentList.add(student);
+            courseList.add(course);
+            studentList.add(student);
             courseStudentList.add(courseStudent);
         }
 
