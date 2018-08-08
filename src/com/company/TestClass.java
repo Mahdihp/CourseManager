@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class TestClass {
 
-
     public static void main(String[] args) {
 
         HashSet<String> course = new HashSet<String>();
