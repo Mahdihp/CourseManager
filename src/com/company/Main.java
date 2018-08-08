@@ -6,7 +6,7 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
     private static List<Course> courseList = new ArrayList<>();
-    private static Set<Student> studentList = new HashSet<>();
+    private static List<Student> studentList = new ArrayList<>();
     private static Set<CourseStudent> courseStudentList = new HashSet<>();
 
     private final static String EXIT = "exit";
@@ -70,6 +70,18 @@ public class Main {
         }
     }
 
+    public static double getAvrage(Student s) {
+        int sum = 0;
+        int count = 0;
+        for (CourseStudent cs : courseStudentList) {
+            if (s.equals(cs.getStudent())) {
+                sum += cs.getGrade();
+                count++;
+            }
+        }
+        return sum / count;
+    }
+
     private static void avarageCourse() {
         Double sum = 0d;
         int count = 0;
@@ -94,6 +106,7 @@ public class Main {
     }
 
     private static void studentList() {
+        Collections.sort(studentList, new StudentAverageComparator());
         for (Student s : studentList)
             System.out.println(s);
     }
@@ -127,5 +140,12 @@ public class Main {
         }
 
     }
+}
 
+class StudentAverageComparator implements Comparator<Student> {
+
+    @Override
+    public int compare(Student o1, Student o2) {
+        return Double.valueOf(Main.getAvrage(o1) - Main.getAvrage(o2)).intValue();
+    }
 }
