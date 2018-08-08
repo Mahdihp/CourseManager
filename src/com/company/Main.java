@@ -1,15 +1,13 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Course> courseList = new ArrayList<>();
-    private static List<Student> studentList = new ArrayList<>();
-    private static List<CourseStudent> courseStudentList = new ArrayList<>();
+    private static Set<Course> courseList = new HashSet<>();
+    private static Set<Student> studentList = new HashSet<>();
+    private static Set<CourseStudent> courseStudentList = new HashSet<>();
 
     private final static String EXIT = "exit";
     private final static String DELIMITER = " ";
@@ -25,6 +23,9 @@ public class Main {
             System.out.println("0: Exit");
             System.out.println("1: Course List");
             System.out.println("2: Student List");
+            System.out.println("3: Course Student List");
+            System.out.println("4: Avarage Course Score List");
+            System.out.println("5: Avarage Student List");
 
             int i = scanner.nextInt();
             switch (i) {
@@ -37,18 +38,54 @@ public class Main {
                 case 2:
                     studentList();
                     break;
+                case 3:
+                    courseStudentList();
+                    break;
+                case 4:
+                    avarageCourse();
+                    break;
+                case 5:
+                    avarageStudent();
+                    break;
                 default:
                     System.out.println("wrong number");
             }
         }
     }
 
+    private static void avarageStudent() {
+        for ()
+    }
+
+    private static void avarageCourse() {
+        Double sum = 0d;
+        int count = 0;
+        for (Course c : courseList) {
+            for (CourseStudent cs : courseStudentList) {
+                if (c.equals(cs.getCourse())) {
+                    sum += cs.getGrade();
+                    count++;
+                }
+            }
+            System.out.println(sum / count);
+            count = 0;
+            sum = 0d;
+        }
+    }
+
+    private static void courseStudentList() {
+        for (CourseStudent cs : courseStudentList)
+            System.out.println(cs);
+    }
+
     private static void studentList() {
-        System.out.println(studentList);
+        for (Student s : studentList)
+            System.out.println(s);
     }
 
     private static void courseList() {
-        System.out.println(courseList);
+        for (Course c : courseList)
+            System.out.println(c);
     }
 
     public static void readData() {

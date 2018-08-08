@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 public class CourseStudent {
 
     private Course course;
@@ -37,5 +39,29 @@ public class CourseStudent {
 
     public void setGrade(Double grade) {
         this.grade = grade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseStudent that = (CourseStudent) o;
+        return Objects.equals(course, that.course) &&
+                Objects.equals(grade, that.grade);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(course, grade);
+    }
+
+    @Override
+    public String toString() {
+        return "CourseStudent{" +
+                "course=" + course +
+                ", student=" + student +
+                ", grade=" + grade +
+                '}';
     }
 }
