@@ -54,7 +54,19 @@ public class Main {
     }
 
     private static void avarageStudent() {
-        for ()
+        Double sum = 0d;
+        int count = 0;
+        for (Student s: studentList){
+            for (CourseStudent cs : courseStudentList){
+                if (s.equals(cs.getStudent())){
+                    sum += cs.getGrade();
+                    count++;
+                }
+            }
+            System.out.println(s.getName()+"  " + sum / count);
+            count = 0;
+            sum = 0d;
+        }
     }
 
     private static void avarageCourse() {
@@ -67,7 +79,7 @@ public class Main {
                     count++;
                 }
             }
-            System.out.println(sum / count);
+            System.out.println(c.getName()+"  "+ sum / count);
             count = 0;
             sum = 0d;
         }
